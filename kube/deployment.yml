@@ -16,7 +16,6 @@ spec:
       containers:
       - name: cgit
         image: truebad0ur/cgit:aarch64
-        #image: woahbase/alpine-cgit
         ports:
         - containerPort: 80
         imagePullPolicy: Always

@@ -2,9 +2,9 @@ FROM debian:12 AS builder
 
 WORKDIR /build
 
-RUN apt update && apt install -y git build-essential libssl-dev libz-dev
+RUN apt update && apt install -y git build-essential libssl-dev libz-dev lighttpd
 
-RUN git clone https://git.zx2c4.com/cgit
+RUN git clone --depth 1 https://git.zx2c4.com/cgit
 
 WORKDIR /build/cgit
 
@@ -14,25 +14,23 @@ RUN make
 
 RUN make install
 
-FROM lkwg82/h2o-http2-server
-#nginx:1.27.3-perl
+#FROM rtsp/lighttpd
 
-COPY configs/cgit.conf /usr/local/apache2/conf/extra/cgit.conf
+#RUN mkdir -p /usr/local/lib/cgit/filters
 
-COPY configs/cgitrc /etc/cgitrc
-COPY --from=builder /build/cgit/cgit /cgit/cgit.cgi
-COPY --from=builder /build/cgit/cgit.css /cgit/cgit.css
-COPY --from=builder /build/cgit/cgit.js /cgit/cgit.js
-COPY --from=builder /build/cgit/favicon.ico /cgit/favicon.ico
-COPY --from=builder /build/cgit/robots.txt /cgit/robots.txt
-COPY --from=builder /build/cgit/cgit.png /cgit/cgit.png
-COPY --from=builder /build/cgit/filters/ /cgit/filters/
+#COPY --from=builder /build/cgit/cgit /var/www/htdocs/cgit/cgit.cgi
+#COPY --from=builder /build/cgit/cgit.js /var/www/htdocs/cgit/cgit.js
+#COPY --from=builder /build/cgit/cgit.css /var/www/htdocs/cgit/cgit.css
+#COPY --from=builder /build/cgit/cgit.png /var/www/htdocs/cgit/cgit.png
+#COPY --from=builder /build/cgit/favicon.ico /var/www/htdocs/cgit/favicon.ico
+#COPY --from=builder /build/cgit/robots.txt /var/www/htdocs/cgit/robots.txt
+#COPY --from=builder /build/cgit/filters /usr/local/lib/cgit/filters
 
-#COPY configs/cgitrc /etc/cgitrc
-#COPY configs/httpd-cgit.conf /etc/httpd/conf.d/httpd-cgit.conf
+COPY configs/cgit.conf /etc/lighttpd/lighttpd.conf
 
-#RUN chmod +x /var/www/cgi-bin/cgit.cgi
+#COPY configs/cgit.conf /etc/lighttpd/conf.d/cgit.conf
+#RUN echo 'include "conf.d/cgit.conf"' >> /etc/lighttpd/lighttpd.conf
 
-#EXPOSE 80
+ENTRYPOINT ["/usr/sbin/lighttpd"]
 
-#CMD ["lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
+CMD ["-D", "-f", "/etc/lighttpd/lighttpd.conf"]
