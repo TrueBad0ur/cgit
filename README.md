@@ -11,15 +11,24 @@ Official repo - https://git.zx2c4.com/cgit/about/
 5. `sudo make install`
 
 ## Useful files
-- everything to /var/www/htdocs/cgit/
+- everything in /var/www/htdocs/cgit/
 - cgit(binary) -> usually renames to cgit.cgi
 - cgit.js
 - cgit.css
 - cgit.png
 - favicon.ico
 - robots.txt
-- filers/* to /usr/local/lib/cgit/filters/
+- filers/* in /usr/local/lib/cgit/filters/
 
+## Useful info
+
+To add sescription of repo you should add text to .git/description
+
+## Testing
+
+Build: `docker build -t cgit docker/`
+
+Run: `docker run --rm --network host --name cgit cgit`
 
 # Useful links
 
