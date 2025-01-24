@@ -1,0 +1,7 @@
+- [ ] Make CI from github and build image with saved image state to dockerhub
+- [ ] Migrate to local docker registry
+- [ ] Migrate CI on local with BuildKite
+- [ ] Change theme to dark
+- [ ] Change icons, text
+- [ ] Make redirect from domain to sub /git
+- [ ] Make monorepo

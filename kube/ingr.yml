@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cgit
+  namespace: cgit
+  annotations:
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    kubernetes.io/ingress.class: "traefik"
+    cert-manager.io/cluster-issuer: "letsencrypt"
+spec:
+  ingressClassName: "traefik"
+  tls:
+  - hosts:
+    - git.kubehomelab.space
+    secretName: cgit-cert
+  rules:
+  - host: git.kubehomelab.space
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: cgit
+            port:
+              number: 80
