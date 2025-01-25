@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: copier
+  namespace: cgit
+spec:
+  volumes:
+    - name: cgit-repositories
+      persistentVolumeClaim:
+        claimName: cgit-repositories
+  containers:
+    - name: copier
+      image: alpine
+      command: [ "/bin/sh", "-c", "--" ]
+      args: [ "while true; do sleep 30; done;" ]
+      volumeMounts:
+        - mountPath: /var/www/htdocs/cgit/repositories/
+          name: cgit-repositories

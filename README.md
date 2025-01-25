@@ -22,7 +22,14 @@ Official repo - https://git.zx2c4.com/cgit/about/
 
 ## Useful info
 
-To add sescription of repo you should add text to .git/description
+To add description of repo you should add text to .git/description
+
+Copy data to PV:
+```bash
+k apply -f copier.yml
+
+k cp ./local-repository/ cgit/copier:/var/www/htdocs/cgit/repositories/local-repository
+```
 
 ## Testing
 
