@@ -14,17 +14,18 @@ RUN make
 
 RUN make install
 
-#FROM rtsp/lighttpd
+FROM alpine:3.21
 
-#RUN mkdir -p /usr/local/lib/cgit/filters
+RUN apk update && apk --no-cache --update add nginx python3-dev py3-pip build-base linux-headers pcre-dev uwsgi uwsgi-cgi uwsgi-python3 g++
+#RUN pip install uwsgi --break-system-packages
 
-#COPY --from=builder /build/cgit/cgit /usr/share/webapps/cgit/cgit.cgi
-#COPY --from=builder /build/cgit/cgit.js /usr/share/webapps/cgit/cgit.js
-#COPY --from=builder /build/cgit/cgit.css /usr/share/webapps/cgit/cgit.css
-#COPY --from=builder /build/cgit/cgit.png /usr/share/webapps/cgit/cgit.png
-#COPY --from=builder /build/cgit/favicon.ico /usr/share/webapps/cgit/favicon.ico
-#COPY --from=builder /build/cgit/robots.txt /usr/share/webapps/cgit/robots.txt
-#COPY --from=builder /build/cgit/filters /usr/local/lib/cgit/filters
+COPY --from=builder /build/cgit/cgit /var/www/htdocs/cgit/cgit.cgi
+COPY --from=builder /build/cgit/cgit.js /var/www/htdocs/cgit/cgit.js
+COPY --from=builder /build/cgit/cgit.css /var/www/htdocs/cgit/cgit.css
+COPY --from=builder /build/cgit/cgit.png /var/www/htdocs/cgit/cgit.png
+COPY --from=builder /build/cgit/favicon.ico /var/www/htdocs/cgit/favicon.ico
+COPY --from=builder /build/cgit/robots.txt /var/www/htdocs/cgit/robots.txt
+COPY --from=builder /build/cgit/filters /usr/local/lib/cgit/filters
 
 COPY configs/nginx.conf /etc/nginx/nginx.conf
 COPY configs/cgit.ini /etc/uwsgi/cgit.ini
@@ -35,7 +36,7 @@ COPY repositories /var/www/htdocs/cgit/repositories/
 
 COPY configs/cgitrc /etc/cgitrc
 
-COPY start.sh /
+COPY configs/start.sh /
 RUN chmod +x /start.sh
 
 ENTRYPOINT ["/start.sh"]

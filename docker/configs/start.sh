@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 nginx
 uwsgi --ini /etc/uwsgi/cgit.ini
