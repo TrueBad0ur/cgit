@@ -1,0 +1,5 @@
+/run/
+/var/www/htdocs/cgit/
+/var/www/htdocs/cgit/repositories/
+/usr/local/lib/cgit/filters/
+/etc/cgitrc

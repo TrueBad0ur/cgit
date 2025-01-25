@@ -1,4 +1,4 @@
-- [ ] Multistage
+- [x] Multistage
 - [ ] Make CI from github and build image with saved image state to dockerhub
 - [ ] Migrate to local docker registry
 - [ ] Migrate CI on local with BuildKite
@@ -7,4 +7,4 @@
 - [ ] Make redirect from domain to sub /git
 - [ ] Make monorepo
 - [ ] Add scripts to download repos, etc
-- [ ] Deelte root everywhere
+- [ ] Delete root user usage everywhere

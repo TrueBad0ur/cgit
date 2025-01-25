@@ -26,9 +26,13 @@ To add sescription of repo you should add text to .git/description
 
 ## Testing
 
-Build: `docker build -t cgit docker/`
+Build: `docker build -t cgit ./docker`
 
-Run: `docker run --rm --network host --name cgit cgit`
+Stop the container: `docker ps -a | grep cgit | awk {'print $1'} | xargs docker stop`
+
+Run: `docker run -v ./docker/repositories/:/var/www/htdocs/cgit/repositories/ --rm --network host --name cgit cgit`
+
+Slim image `slim build --continue-after 1 --http-probe=false --include-path-file=./docker/keep-paths-list --target cgit:latest`
 
 # Useful links
 

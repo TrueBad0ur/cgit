@@ -1,8 +1,8 @@
-FROM debian:12 AS builder
+FROM debian:12.9-slim AS builder
 
 WORKDIR /build
 
-RUN apt update && apt install -y git build-essential libssl-dev libz-dev fcgiwrap nginx uwsgi
+RUN apt update && apt install -y git build-essential libssl-dev libz-dev
 
 RUN git clone --depth 1 https://git.zx2c4.com/cgit
 
@@ -14,10 +14,9 @@ RUN make
 
 RUN make install
 
-FROM alpine:3.21
+FROM debian:12.9-slim
 
-RUN apk update && apk --no-cache --update add nginx python3-dev py3-pip build-base linux-headers pcre-dev uwsgi uwsgi-cgi uwsgi-python3 g++
-#RUN pip install uwsgi --break-system-packages
+RUN apt update && apt install -y nginx uwsgi
 
 COPY --from=builder /build/cgit/cgit /var/www/htdocs/cgit/cgit.cgi
 COPY --from=builder /build/cgit/cgit.js /var/www/htdocs/cgit/cgit.js
@@ -32,7 +31,7 @@ COPY configs/cgit.ini /etc/uwsgi/cgit.ini
 
 RUN mkdir /run/uwsgi
 
-COPY repositories /var/www/htdocs/cgit/repositories/
+#COPY repositories /var/www/htdocs/cgit/repositories/
 
 COPY configs/cgitrc /etc/cgitrc
 
