@@ -2,7 +2,7 @@ FROM debian:12.9-slim AS builder
 
 WORKDIR /build
 
-RUN apt update && apt install -y git build-essential libssl-dev libz-dev
+RUN apt update && apt install -y git build-essential libssl-dev libz-dev wget
 
 RUN git clone --depth 1 https://git.zx2c4.com/cgit
 
@@ -13,6 +13,8 @@ RUN git submodule update
 RUN make
 
 RUN make install
+
+#RUN wget -O cgit.png https://github.com/mrexodia/cgit-theme/blob/b76be44e7a8cfa21376bbaa09f6549f4e41611c6/git-logo.png
 
 FROM debian:12.9-slim
 
