@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: cgit
-        image: truebad0ur/cgit:latest
+        image: truebad0ur/cgit:0.1-aarch64
         ports:
         - containerPort: 80
         imagePullPolicy: Always

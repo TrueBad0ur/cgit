@@ -31,6 +31,17 @@ k apply -f copier.yml
 k cp ./local-repository/ cgit/copier:/var/www/htdocs/cgit/repositories/local-repository
 ```
 
+### To build for multiple arch's:
+```bash
+export DOCKER_CLI_EXPERIMENTAL=enabled
+docker buildx create --use --name multi-arch-builder
+docker buildx build --platform=linux/amd64,linux/arm64 -t cgit ./docker/
+```
+If resolv docker registry with buildx fails:
+```bash
+docker buildx rm
+```
+
 ## Testing
 
 Build: `docker build -t cgit ./docker`
