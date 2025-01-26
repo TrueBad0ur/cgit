@@ -14,7 +14,7 @@ RUN make
 
 RUN make install
 
-#RUN wget -O cgit.png https://github.com/mrexodia/cgit-theme/blob/b76be44e7a8cfa21376bbaa09f6549f4e41611c6/git-logo.png
+RUN wget -O cgit.png https://github.com/mrexodia/cgit-theme/blob/b76be44e7a8cfa21376bbaa09f6549f4e41611c6/git-logo.png?raw=true
 
 FROM debian:12.9-slim
 

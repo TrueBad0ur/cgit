@@ -1,7 +1,10 @@
 #!/bin/bash
 
-docker build -t cgit ./docker
+docker build -t cgit:temp ./docker
 
-slim build --continue-after 1 --http-probe=false --include-path-file=./docker/keep-paths-list --target cgit:latest --tag truebad0ur/cgit:0.1-`arch`
+read -p "Enter version [0.2]: " version
+version=${version:-0.2}
 
-docker push truebad0ur/cgit:0.1-`arch`
+slim build --continue-after 1 --http-probe=false --include-path-file=./docker/keep-paths-list --target cgit:temp --tag truebad0ur/cgit:"$version"-`arch`
+
+docker push truebad0ur/cgit:"$version"-`arch
