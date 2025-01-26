@@ -22,4 +22,4 @@ root-readme=/var/www/htdocs/cgit/about.html
 
 css=/cgit.css
 logo=/cgit.png
-favicon=/favicon.ico
+favicon=/favicon.png

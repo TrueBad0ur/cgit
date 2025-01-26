@@ -14,7 +14,12 @@ RUN make
 
 RUN make install
 
+### Additional configuration
+
 RUN wget -O cgit.png https://github.com/mrexodia/cgit-theme/blob/b76be44e7a8cfa21376bbaa09f6549f4e41611c6/git-logo.png?raw=true
+RUN wget -O favicon.png https://github.com/mrexodia/cgit-theme/blob/master/git-favicon.png?raw=true
+
+###
 
 FROM debian:12.9-slim
 
@@ -24,7 +29,7 @@ COPY --from=builder /build/cgit/cgit /var/www/htdocs/cgit/cgit.cgi
 COPY --from=builder /build/cgit/cgit.js /var/www/htdocs/cgit/cgit.js
 COPY --from=builder /build/cgit/cgit.css /var/www/htdocs/cgit/cgit.css
 COPY --from=builder /build/cgit/cgit.png /var/www/htdocs/cgit/cgit.png
-COPY --from=builder /build/cgit/favicon.ico /var/www/htdocs/cgit/favicon.ico
+COPY --from=builder /build/cgit/favicon.png /var/www/htdocs/cgit/favicon.png
 COPY --from=builder /build/cgit/robots.txt /var/www/htdocs/cgit/robots.txt
 COPY --from=builder /build/cgit/filters /usr/local/lib/cgit/filters
 

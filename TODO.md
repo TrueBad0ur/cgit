@@ -4,7 +4,6 @@
 - [ ] Migrate CI on local with BuildKite
 - [ ] Change theme to dark
 - [ ] Change icons, text
-- [ ] Make redirect from domain to sub /git
 - [ ] Make monorepo
-- [ ] Add scripts to download repos, etc
+- [ ] Add scripts to download repos, etc (in conception of k8s)
 - [ ] Delete root user usage everywhere
