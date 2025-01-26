@@ -35,6 +35,7 @@ COPY --from=builder /build/cgit/filters /usr/local/lib/cgit/filters
 
 COPY configs/nginx.conf /etc/nginx/nginx.conf
 COPY configs/cgit.ini /etc/uwsgi/cgit.ini
+COPY configs/about.html /var/www/htdocs/cgit/about.html
 
 RUN mkdir /run/uwsgi
 

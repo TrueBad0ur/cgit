@@ -16,9 +16,9 @@ enable-git-clone=1
 cache-scanrc-ttl=1
 virtual-root=/
 side-by-side-diffs=1
-root-title=cGit
-root-desc=cGit
-root-readme=/var/www/htdocs/cgit/about.html
+root-title=TrueBad0ur's cGit instance
+root-desc=Just a simple cGit with some projects
+root-readme=/about.html
 
 css=/cgit.css
 logo=/cgit.png
