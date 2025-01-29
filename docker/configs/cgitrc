@@ -1,6 +1,8 @@
 remove-suffix=1
 scan-hidden-path=1
 
+source-filter=/usr/local/lib/cgit/filters/code-syntax-highlighting.sh
+#about-filter=/usr/local/lib/cgit/filters/about-formatting.sh
 scan-path=/var/www/htdocs/cgit/repositories/
 enable-git-config=1
 
@@ -18,8 +20,10 @@ virtual-root=/
 side-by-side-diffs=1
 root-title=TrueBad0ur's cGit instance
 root-desc=Just a simple cGit with some projects
-root-readme=/about.html
+#root-readme=/var/www/htdocs/cgit/about.html
 
 css=/cgit.css
 logo=/cgit.png
 favicon=/favicon.png
+
+#readme=:README.md

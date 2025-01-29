@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: cgit
-        image: truebad0ur/cgit:0.3-aarch64
+        image: truebad0ur/cgit:0.4-aarch64
         ports:
         - containerPort: 80
         imagePullPolicy: Always
